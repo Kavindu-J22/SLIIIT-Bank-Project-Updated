@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::section})">
+
+<section>
+    <h2 class="text-xl font-bold mb-4 text-blue-600">Staff Dashboard</h2>
+    <p class="mb-4">Welcome, Staff! Manage loans and feedback.</p>
+    <a href="/loan/list" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">View Loans</a>
+    <a href="/feedback/list" class="bg-blue-500 text-white p-2 rounded mx-2 hover:bg-blue-600">View Feedback</a>
+    <a href="/fixdeposit/list" class="bg-blue-500 text-white p-2 rounded mx-2 hover:bg-blue-600">View Fix Deposits</a>
+</section>
