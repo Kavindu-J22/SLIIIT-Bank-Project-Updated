@@ -36,4 +36,21 @@ public class FixDeposit {
 
     @ManyToOne
     private User approver;
+
+    // Manual setter methods to fix compilation issues
+    public void setApplicant(User applicant) {
+        this.applicant = applicant;
+    }
+
+    public void setStatus(FixDepositStatus status) {
+        this.status = status;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public void setApprover(User approver) {
+        this.approver = approver;
+    }
 }
