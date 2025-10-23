@@ -1,12 +1,12 @@
+<!-- src/main/resources/templates/fixdeposit-list.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout}">
-<head>
-    <title>SLIIT Bank - Fix Deposits</title>
-</head>
-<body>
-<div th:fragment="content">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="layout :: layout(~{::section})">
+
+<section>
     <h2 class="text-xl font-bold mb-4 text-blue-600">Fix Deposit List</h2>
-    <a href="/fixdeposit/apply" class="bg-green-500 text-white p-2 rounded mb-4 inline-block hover:bg-green-600" th:if="${#authorization.expression('hasRole(''CUSTOMER'')')}">Apply for Fix Deposit</a>
+    <a href="/fixdeposit/apply" class="bg-green-500 text-white p-2 rounded mb-4 inline-block hover:bg-green-600" sec:authorize="hasRole('CUSTOMER')">Apply for Fix Deposit</a>
     <table class="w-full border-collapse border border-gray-300">
         <thead>
         <tr class="bg-gray-200">
@@ -24,14 +24,12 @@
             <td class="p-2" th:text="${fixDeposit.duration}"></td>
             <td class="p-2" th:text="${fixDeposit.status}"></td>
             <td class="p-2">
-                <a th:href="@{/fixdeposit/review/{id}(id=${fixDeposit.id})}" class="text-yellow-500 hover:underline" th:if="${#authorization.expression('hasAnyRole(''STAFF'', ''ADMIN'')')}">Review</a>
-                <a th:href="@{/fixdeposit/approve/{id}(id=${fixDeposit.id})}" class="text-green-500 hover:underline mx-2" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Approve</a>
-                <a th:href="@{/fixdeposit/reject/{id}(id=${fixDeposit.id})}" class="text-red-500 hover:underline mx-2" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Reject</a>
-                <a th:href="@{/fixdeposit/delete/{id}(id=${fixDeposit.id})}" class="text-red-500 hover:underline" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure?')">Delete</a>
+                <a th:href="@{/fixdeposit/review/{id}(id=${fixDeposit.id})}" class="text-yellow-500 hover:underline" sec:authorize="hasAnyRole('STAFF', 'ADMIN')">Review</a>
+                <a th:href="@{/fixdeposit/approve/{id}(id=${fixDeposit.id})}" class="text-green-500 hover:underline mx-2" sec:authorize="hasRole('ADMIN')">Approve</a>
+                <a th:href="@{/fixdeposit/reject/{id}(id=${fixDeposit.id})}" class="text-red-500 hover:underline mx-2" sec:authorize="hasRole('ADMIN')">Reject</a>
+                <a th:href="@{/fixdeposit/delete/{id}(id=${fixDeposit.id})}" class="text-red-500 hover:underline" sec:authorize="hasRole('ADMIN')" onclick="return confirm('Are you sure?')">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
-</div>
-</body>
-</html>
+</section>
